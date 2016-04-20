@@ -10,3 +10,20 @@
 </li>
 <% end %>
 </ul>
+
+<h3>Create a Question</h3>
+<h5>(Check if user logged in!)</h5>
+
+<% if @errors %>
+  <ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<form action="/" method="post">
+  <input type='text' name="question[title]" placeholder="Question title">
+  <input type='text' name="question[content]" placeholder="Question content">
+  <input type="submit">
+</form>
