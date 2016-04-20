@@ -1,0 +1,25 @@
+<h2>Questions</h2>
+
+<ul class="questions">
+<% @questions.each do |question| %>
+<li class="question">
+  <div class="box"><%= question.votes.count %> votes<div>
+  <div class="box"><%= question.answers.count %> answers<div>
+  <h3><%= question.title %></h3>
+  <%= question.creator.username %>
+</li>
+<% end %>
+</ul>
+
+<h3>Create a Question</h3>
+<h5>(Check if user logged in!)</h5>
+
+<% @errors.each do |error| %>
+
+<% end %>
+
+<form action="/" method="post">
+  <input type='text' name="question[title]" placeholder="Question title">
+  <input type='text' name="question[content]" placeholder="Question content">
+  <input type="submit">
+</form>
