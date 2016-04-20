@@ -14,8 +14,12 @@
 <h3>Create a Question</h3>
 <h5>(Check if user logged in!)</h5>
 
-<% @errors.each do |error| %>
-
+<% if @errors %>
+  <ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
 <% end %>
 
 <form action="/" method="post">
