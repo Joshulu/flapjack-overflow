@@ -10,6 +10,7 @@
   </section>
 
   <section class="comments">
+    <h4>Question Comments</h4>
     <ul>
       <% @q_comments.each do |comment| %>
         <li>
@@ -17,13 +18,14 @@
             <div class="comment_box"><%= comment.votes.count %> votes<div>
           </aside>
           <p><%= comment.content %></p>
-          <span><%= comment.creator_id %></span>
+          <span><%= comment.creator.username %></span>
         </li>
       <% end %>
     </ul>
   </section>
 
   <section class="answers">
+    <h3>Answers</h3>
     <ul>
       <% @answers.each do |answer| %>
         <li>
@@ -31,7 +33,21 @@
             <div class="answer_box"><%= answer.votes.count %> votes<div>
           </aside>
           <p><%= answer.content %></p>
-          <span><%= answer.creator_id %></span>
+          <span><%= answer.creator.username %></span>
+          <section class="comments">
+            <h4>Answer Comments</h4>
+            <ul>
+              <% answer.responses.each do |comment| %>
+                <li>
+                  <aside>
+                    <div class="comment_box"><%= comment.votes.count %> votes<div>
+                  </aside>
+                  <p><%= comment.content %></p>
+                  <span><%= comment.creator.username %></span>
+                </li>
+              <% end %>
+            </ul>
+          </section>
         </li>
       <% end %>
     </ul>

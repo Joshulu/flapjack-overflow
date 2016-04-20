@@ -24,7 +24,7 @@ end
     creator_id: (1..20).to_a.sample,
     content: Faker::Hacker.say_something_smart,
     respondable_id: Question.all.sample.id,
-    respondable_type: "question")
+    respondable_type: "Question")
     # respondable: Question.all.sample,
     # respondable_type: "question")
 end
@@ -37,7 +37,7 @@ end
 # end
 
 30.times do
-  Answer.create(creator_id: (1..20).to_a.sample, content: Faker::Hacker.phrases, question_id: Question.all.sample)
+  Answer.create(creator_id: (1..20).to_a.sample, content: Faker::Hacker.phrases.sample, question: Question.all.sample)
 end
 
 # Answer.populate 30 do |answer|
@@ -47,7 +47,7 @@ end
 # end
 
 40.times do
-  Response.create(creator_id: (1..20).to_a.sample, content: Faker::Hacker.say_something_smart, respondable_id: Answer.all.sample.id, respondable_type: "answer")
+  Response.create(creator_id: (1..20).to_a.sample, content: Faker::Hacker.say_something_smart, respondable_id: Answer.all.sample.id, respondable_type: "Answer")
 end
 
 # Response.populate 40 do |response|
