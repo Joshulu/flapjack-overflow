@@ -10,7 +10,7 @@ end
 # end
 
 20.times do
-  Question.create(creator_id: (1..20).to_a.sample, content: Faker::Shakespeare.hamlet, title: Faker::Shakespeare.romeo_and_juliet_quote)
+  Question.create(creator_id: (1..20).to_a.sample, content: Faker::Shakespeare.hamlet_quote, title: Faker::Shakespeare.romeo_and_juliet_quote)
 end
 
 # Question.populate 30 do |question|

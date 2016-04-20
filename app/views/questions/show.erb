@@ -1,7 +1,39 @@
 <h2><%= @question.title %></h2>
+<article class="question_page">
+  <section class="question_post">
+    <aside>
+      <div class="box"><%= @question.votes.count %> votes<div>
+      <div class="box"><%= @question.answers.count %> answers<div>
+    </aside>
+    <p><%= @question.content %></p>
+    <span><%= @user.username %></span>
+  </section>
 
-<%= @question.content %>
-<%= @question.creator_id %>
+  <section class="comments">
+    <ul>
+      <% @q_comments.each do |comment| %>
+        <li>
+          <aside>
+            <div class="comment_box"><%= comment.votes.count %> votes<div>
+          </aside>
+          <p><%= comment.content %></p>
+          <span><%= comment.creator_id %></span>
+        </li>
+      <% end %>
+    </ul>
+  </section>
 
-  <div><%= @question.votes.count %> votes<div>
-  <div><%= @question.answers.count %> answers<div>
+  <section class="answers">
+    <ul>
+      <% @answers.each do |answer| %>
+        <li>
+          <aside>
+            <div class="answer_box"><%= answer.votes.count %> votes<div>
+          </aside>
+          <p><%= answer.content %></p>
+          <span><%= answer.creator_id %></span>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</article>
