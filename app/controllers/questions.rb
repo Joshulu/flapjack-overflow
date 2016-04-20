@@ -6,9 +6,6 @@ get "/questions/:id" do
   @question = Question.find(params[:id])
   @user = User.find(@question.creator_id)
   @answers = @question.answers
-  puts
-  p @answers
-  puts
   @q_comments = @question.responses
   erb :"questions/show"
 end
