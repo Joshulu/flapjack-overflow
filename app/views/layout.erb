@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FlapJack Overflow</title>
+  </head>
+  <body>
+    <div class="title_bar">
+      <img src="/imgs/flapjack_overflow.png" alt="flapjack logo" style="width:80px;">
+      <div id="nav_title">FlapJack Overflow</div>
+      <nav>
+        <ul>
+          <li> <a href="/">Home</a> </li>
+          <%if session[:id]%>
+            <li id="break_bar_to_left"> <a href="/logout">Logout</a> </li>
+          <%else%>
+            <li id="break_bar_left_right"> <a href="/login">Login</a> </li>
+            <li> <a href="/user/new">Signup</a> </li>
+          <%end%>
+        </ul>
+      </nav>
+    </div>
+
+
+    <div class="container">
+      <%yield%>
+    </div>
+  </body>
+</html>
