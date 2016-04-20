@@ -3,6 +3,6 @@ get '/' do
 end
 
 get '/questions' do
-  @questions = Questions.all
+  @questions = Question.all
   erb :questions
 end
