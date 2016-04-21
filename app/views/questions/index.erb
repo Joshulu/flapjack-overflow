@@ -11,6 +11,8 @@
 <% end %>
 </ul>
 
+
+<% if @user %>
 <h3>Create a Question</h3>
 <h5>(Check if user logged in!)</h5>
 
@@ -23,7 +25,9 @@
 <% end %>
 
 <form action="/questions" method="post">
+  <input type='hidden' name="question[creator_id]" value="<%= @user.id %>">
   <input type='text' name="question[title]" placeholder="Question title">
   <input type='text' name="question[content]" placeholder="Question content">
   <input type="submit">
 </form>
+<% end %>
