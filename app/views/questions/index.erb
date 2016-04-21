@@ -24,22 +24,22 @@
 
 <div class="create_question">
   <% if current_user %>
-  <h3>Create a Question</h3>
+    <h3>Create a Question</h3>
 
-    <% if @errors %>
-      <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
+      <% if @errors %>
+        <ul>
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
       <% end %>
-    </ul>
-    <% end %>
 
 
-  <form action="/questions" method="post" id="question_form">
-    <input type='hidden' name="question[creator_id]" value="<%= current_user.id %>">
-    <input type='text' name="question[title]" placeholder="Question title">
-    <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
-    <input type="submit">
-  </form>
-
+    <form action="/questions" method="post" id="question_form">
+      <input type='hidden' name="question[creator_id]" value="<%= current_user.id %>">
+      <input type='text' name="question[title]" placeholder="Question title">
+      <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
+      <input type="submit">
+    </form>
+  <% end %>
 </div>
