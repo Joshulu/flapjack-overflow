@@ -11,12 +11,17 @@ end
 
 # creates new user with post request
 post '/users' do
-  new_user = User.create(username: params[:username], password: params[:password])
-  session[:user_id] = new_user.id
-  redirect '/'
+  user = User.new(username: params[:username], password: params[:password])
+
+  if user.save
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    @errors = user.errors.full_messages
+    erb :"users/new"
+  end
 end
 
-#** logs in user need error messages
 get '/login' do
     erb :"users/login"
 end
@@ -24,9 +29,12 @@ end
 
 post '/login' do
   user = User.find_by(username: params[:username])
+
   if user.password == params[:password]
     session[:user_id] = user.id
+    redirect '/'
+  else
+    @errors = ["You've stacked too high my friend."]
     erb :"users/login"
   end
-  redirect '/'
 end
