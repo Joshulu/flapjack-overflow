@@ -30,7 +30,6 @@
   <form action="/questions" method="post" id="question_form">
     <input type='hidden' name="question[creator_id]" value="<%= @user.id %>">
     <input type='text' name="question[title]" placeholder="Question title">
-    <!-- <input type='textarea' name="question[content]" placeholder="Question content"> -->
     <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
     <input type="submit">
   </form>

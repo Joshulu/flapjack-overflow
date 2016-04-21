@@ -1,4 +1,11 @@
 
+<% if @errors %>
+  <ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+<% end %>
 
 <div class="log_sign_form">
   <form action="/users" method="post">
