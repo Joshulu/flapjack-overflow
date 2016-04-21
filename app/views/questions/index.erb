@@ -5,7 +5,7 @@
 <li class="question">
   <div class="box"><%= question.votes.count %> votes<div>
   <div class="box"><%= question.answers.count %> answers<div>
-  <h3><%= question.title %></h3>
+  <h3><a href="/questions/<%= question.id %>"><%= question.title %></a></h3>
   <%= question.creator.username %>
 </li>
 <% end %>
@@ -14,7 +14,6 @@
 
 <% if @user %>
 <h3>Create a Question</h3>
-<h5>(Check if user logged in!)</h5>
 
 <% if @errors %>
   <ul>
