@@ -1,6 +1,4 @@
 get "/questions/:id" do
-  @user = User.find(session[:user_id]) if session[:user_id]
-
   @question = Question.find(params[:id])
   @creator = @question.creator
   @best_answer = @question.best_answer
