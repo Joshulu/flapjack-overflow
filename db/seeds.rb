@@ -1,58 +1,55 @@
 require 'faker'
 
-20.times do
-  User.create(username: Faker::Cat.name, password: "password")
+# users
+10.times do
+  User.create(
+    username: Faker::Cat.name,
+    password: "password"
+  )
 end
 
-# User.populate 20 do |user|
-#   user.username = Faker::Cat.name
-#   user.password_hash = "password"
-# end
-
+# questions
 20.times do
-  Question.create(creator_id: (1..20).to_a.sample, content: Faker::Shakespeare.hamlet_quote, title: Faker::Shakespeare.romeo_and_juliet_quote)
+  Question.create(
+    content: Faker::Shakespeare.hamlet_quote,
+    title: Faker::Shakespeare.romeo_and_juliet_quote,
+    creator: User.all.sample,
+  )
 end
 
-# Question.populate 30 do |question|
-#   question.creator_id = (1..20).to_a.sample
-#   question.content = Faker::Shakespeare.hamlet
-#   question.title = Faker::Shakespeare.romeo_and_juliet_quote
-# end
+# answers
+60.times do
+  Answer.create(
+    content: Faker::Hacker.phrases.sample,
+    creator: User.all.sample,
+    question: Question.all.sample
+  )
+end
 
-40.times do
+# set best answers
+10.times do
+  question = Question.all.sample
+  question.update(
+    best_answer: Answer.where(question: question).sample
+  )
+end
+
+# responses on questions
+20.times do
   Response.create(
-    creator_id: (1..20).to_a.sample,
     content: Faker::Hacker.say_something_smart,
-    respondable_id: Question.all.sample.id,
-    respondable_type: "Question")
-    # respondable: Question.all.sample,
-    # respondable_type: "question")
+    creator: User.all.sample,
+    respondable: Question.all.sample,
+    respondable_type: "Question"
+  )
 end
 
-# Response.populate 40 do |response|
-#   response.creator_id = (1..20).to_a.sample
-#   response.content = Faker::Hacker.say_something_smart
-#   response.respondable = Question.all.sample
-#   response.respondable_type = "question"
-# end
-
-30.times do
-  Answer.create(creator_id: (1..20).to_a.sample, content: Faker::Hacker.phrases.sample, question: Question.all.sample)
+# responses on answers
+60.times do
+  Response.create(
+    content: Faker::Hacker.say_something_smart,
+    creator: User.all.sample,
+    respondable: Answer.all.sample,
+    respondable_type: "Answer"
+  )
 end
-
-# Answer.populate 30 do |answer|
-#   answer.creator_id = (1..20).to_a.sample
-#   answer.content = Faker::Hacker.phrases
-#   answer.question = Question.all.sample
-# end
-
-40.times do
-  Response.create(creator_id: (1..20).to_a.sample, content: Faker::Hacker.say_something_smart, respondable_id: Answer.all.sample.id, respondable_type: "Answer")
-end
-
-# Response.populate 40 do |response|
-#   response.creator_id = (1..20).to_a.sample
-#   response.content = Faker::Hacker.say_something_smart
-#   response.respondable = Answer.all.sample
-#   response.respondable_type = "answer"
-# end

@@ -2,7 +2,7 @@ get "/questions/:id" do
   @user = User.find(session[:user_id]) if session[:user_id]
 
   @question = Question.find(params[:id])
-  @creator = User.find(@question.creator_id) # @question.creator
+  @creator = @question.creator
   @best_answer = @question.best_answer
   @answers = @question.answers
   @q_comments = @question.responses
@@ -29,6 +29,7 @@ post '/best_answer' do
   question = Question.find(params[:question_id])
   answer = Answer.find(params[:answer_id])
   question.best_answer = answer
+  question.save
   redirect "/questions/#{question.id}"
 end
 
