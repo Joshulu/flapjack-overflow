@@ -16,7 +16,8 @@
         <ul>
           <li> <a href="/">Home</a> </li>
           <%if session[:user_id]%>
-            <li id="break_bar_to_left"> <a href="/logout">Logout</a> </li>
+          <li id="break_bar_left_right"><a href='#'><%=User.find(session[:user_id]).username%></a></li>
+            <li> <a href="/logout">Logout</a> </li>
           <%else%>
             <li id="break_bar_left_right"> <a href="/login">Login</a> </li>
             <li> <a href="/users/new">Signup</a> </li>
