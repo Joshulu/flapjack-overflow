@@ -1,8 +1,21 @@
-<div class="vote-button">
-  <form name="upvote" action="/" method="post">
-    <button type="submit" name="vote" value="upvote">^</button>
-    <button type="submit" name="vote" value="downvote">v</button>
+<div class="vote_box">
+
+  <form class="up" action="/votes" method="post">
+    <input type="hidden" name="object_type" value=<%= object.class %> >
+    <input type="hidden" name="object_id" value=<%= object.id %> >
+    <input type="hidden" name="vote_count" value=<%= object.votes.count %> >
+    <input type="hidden" name="vote_type" value="upvote">
+    <input type="submit" value="^">
   </form>
+
+  <form class="down" action="/votes" method="post">
+    <input type="hidden" name="object_type" value=<%= object.class %> >
+    <input type="hidden" name="object_id" value=<%= object.id %> >
+    <input type="hidden" name="vote_count" value=<%= object.votes.count %> >
+    <input type="hidden" name="vote_type" value="downvote">
+    <input type="submit" value="v">
+  </form>
+
 </div>
 <div class="vote_number"><%= object.votes.count %></div>
 

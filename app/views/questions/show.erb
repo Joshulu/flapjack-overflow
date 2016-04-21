@@ -22,7 +22,7 @@
       <% end %>
     </ul>
 
-    <% if @user %>
+    <% if current_user %>
     <h3>Respond to Question</h3>
 
     <!-- <% if @errors %>
@@ -34,7 +34,7 @@
     <% end %> -->
 
     <form action="/responses" method="post">
-      <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
+      <input type='hidden' name="response[creator_id]" value="<%= current_user.id %>">
       <input type='hidden' name="response[respondable_id]" value="<%= @question.id %>">
       <input type='hidden' name="response[respondable_type]" value="Question">
       <input type='text' name="response[content]" placeholder="Response content">
@@ -67,7 +67,7 @@
               <% end %>
             </ul>
 
-          <% if @user %>
+          <% if current_user %>
           <h3>Respond to Answer</h3>
 
           <!-- <% if @errors %>
@@ -79,7 +79,7 @@
           <% end %> -->
 
           <form action="/responses" method="post">
-            <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
+            <input type='hidden' name="response[creator_id]" value="<%= current_user.id %>">
             <input type='hidden' name="response[respondable_id]" value="<%= answer.id %>">
             <input type='hidden' name="response[respondable_type]" value="Answer">
             <input type='text' name="response[content]" placeholder="Response content">
@@ -93,7 +93,7 @@
       <% end %>
     </ul>
 
-    <% if @user %>
+    <% if current_user %>
     <h3>Answer this Question</h3>
 
     <% if @errors %>
@@ -105,7 +105,7 @@
     <% end %>
 
     <form action="/answers" method="post">
-      <input type='hidden' name="answer[creator_id]" value="<%= @user.id %>">
+      <input type='hidden' name="answer[creator_id]" value="<%= current_user.id %>">
       <input type='hidden' name="answer[question_id]" value="<%= @question.id %>">
       <input type='text' name="answer[content]" placeholder="Answer content">
       <input type="submit">
