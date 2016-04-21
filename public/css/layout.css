@@ -79,6 +79,90 @@ nav li{
   /*background-color: red;*/
 }
 
+/* ---- Home Page ---- */
+h2{
+  padding-bottom: 40px;
+  margin: auto;
+  width: 50%;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.questions {
+  margin-top: 30px;
+}
+#main_box{
+  display: inline-block;
+}
+.box{
+  padding: 5px;
+}
+.question h3{
+  display: inline-block;
+  margin-left: 1%;
+}
+
+ li {
+  border: 1px solid rgba(0,0,0,.1);
+  list-style-type: none;
+  list-style: none;
+}
+.question a{
+  color: #B83926;
+  text-decoration: none;
+}
+
+.question a:hover{
+  color: rgb(79,77,72);
+}
+
+#username{
+  display: inline-block;
+}
+
+.create_question{
+  padding: 100px;
+}
+.create_question h3{
+  margin: auto;
+  margin-top: -80px;
+  width: 50%;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.create_question form{
+  margin: auto;
+  text-align: center;
+  width:500px;
+}
+
+.create_question input[type="submit"]{
+  width: 505px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  margin-top: 20px;
+}
+.create_question input[name="question[title]"]{
+  margin-top: 10px;
+  height: 30px;
+  width: 500px;
+}
+.create_question textarea[name="question[content]"]{
+  margin-top: 10px;
+  height: 100px;
+  width: 500px;
+}
+
+
+
+
+
 
 
 .container{
