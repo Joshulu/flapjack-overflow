@@ -23,10 +23,15 @@ body{
 }
 
 #nav_title{
-display: inline-block;
-font-size: 2.3em;
-padding-bottom: 10px;
-margin: auto;
+  display: inline-block;
+  font-size: 2.3em;
+  padding-bottom: 10px;
+  margin: auto;
+}
+
+/*-moves down body from header-*/
+.container{
+  margin-top: 200px;
 }
 
 /*----- Navigation Links -----*/
@@ -56,10 +61,6 @@ nav li{
 }
 
 /* ----- LOG IN SIGN UP CSS ---- */
-.log_sign_form{
-
-}
-
 .log_sign_form form{
   margin: auto;
   text-align: center;
@@ -104,7 +105,7 @@ h2{
   margin-left: 1%;
 }
 
- li {
+ .questions li {
   border: 1px solid rgba(0,0,0,.1);
   list-style-type: none;
   list-style: none;
@@ -140,7 +141,6 @@ h2{
   text-align: center;
   width:500px;
 }
-
 .create_question input[type="submit"]{
   width: 505px;
   height: 30px;
@@ -160,11 +160,161 @@ h2{
 }
 
 
+/* ---- QUESTION SHOW PAGE ---*/
+
+.question_post #main_box{
+  display: inline-block;
+  /*background-color: red;*/
+}
+.box{
+  padding: 5px;
+}
+
+.question_post {
+  list-style-type: none;
+  list-style: none;
+  width: 75%;
+  margin: auto;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(0,0,0,.4) ;
+
+}
+.question_post p{
+  margin: auto;
+  display: inline-block;
+  margin-left: 10%;
+  width: 70%;
+}
+
+.question_post span{
+  bottom: 0;
+  display: block;
+  float: right;
+  /*margin-left: 80%;*/
+}
+.question_page{
+  margin-top: 30px;
+}
 
 
+/*--- COMMENTS ON QUESTION ---*/
 
+.comments {
+  margin-top: 30px;
+  font-size: .8em;
+  font-weight: lighter;
+}
+.comments h4,h3{
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.comments aside{
+  display:inline-block;
+}
+.comment_box{
+  padding: 5px;
+}
+ .comments li {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  list-style-type: none;
+  list-style: none;
+  min-height: 70px;
+  }
+.comments p{
+  padding-top: 1%;
+  margin: auto;
+  display: inline-block;
+  margin-left: 10%;
+  width: 70%;
+}
 
+/*--comments form--*/
 
-.container{
-  margin-top: 200px;
+.comments textarea[name="response[content]"]{
+  margin-top: 10px;
+  min-height: 60px;
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.comments input[type="submit"]{
+  width: 505px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  /*margin-top: 20px;*/
+}
+
+.comments form{
+  font-size: 1em;
+  margin: auto;
+  text-align: center;
+  width:500px;
+  margin-bottom: 10px;
+}
+
+/*--- ANSWERS ---*/
+
+.answers {
+  margin-top: 10px;
+}
+.answers p, span, .answer_box{
+  font-weight: lighter;
+}
+.answers aside{
+  display:inline-block;
+}
+.answer_box{
+  padding: 5px;
+}
+ .answers li {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  list-style-type: none;
+  list-style: none;
+  min-height: 70px;
+}
+.answers p{
+  padding-top: 1%;
+  margin: auto;
+  display: inline-block;
+  margin-left: 10%;
+  width: 70%;
+}
+.answers h4{
+  margin-top: 20px;
+  font-size: 1.1em;
+  margin-left: 0;
+  margin-right: 0;
+  width: 97%;
+  text-align: left;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.answers textarea[name="answer[content]"]{
+  margin-top: 10px;
+  min-height: 200px;
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.answers input[type="submit"]{
+  width: 505px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  /*margin-top: 20px;*/
+}
+
+.answers form[id="answers"]{
+  font-size: 1em;
+  margin: auto;
+  text-align: center;
+  width:500px;
+  margin-bottom: 10%;
 }
