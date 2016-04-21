@@ -22,9 +22,9 @@
   <% end %>
   </ul>
 
-  <div class="create_question">
-    <% if @user %>
-    <h3>Create a Question</h3>
+<div class="create_question">
+  <% if current_user %>
+  <h3>Create a Question</h3>
 
     <% if @errors %>
       <ul>
@@ -34,12 +34,12 @@
     </ul>
     <% end %>
 
-    <form action="/questions" method="post" id="question_form">
-      <input type='hidden' name="question[creator_id]" value="<%= @user.id %>">
-      <input type='text' name="question[title]" placeholder="Question title">
-      <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
-      <input type="submit">
-    </form>
-  </div>
-  <% end %>
+
+  <form action="/questions" method="post" id="question_form">
+    <input type='hidden' name="question[creator_id]" value="<%= current_user.id %>">
+    <input type='text' name="question[title]" placeholder="Question title">
+    <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
+    <input type="submit">
+  </form>
+
 </div>
