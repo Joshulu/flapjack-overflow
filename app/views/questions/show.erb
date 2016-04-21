@@ -1,12 +1,10 @@
 <h2><%= @question.title %></h2>
 <article class="question_page">
   <section class="question_post">
-    <aside>
-      <div class="box"><%= @question.votes.count %> votes<div>
-      <div class="box"><%= @question.answers.count %> answers<div>
+    <aside class="votes">
+      <%= erb :"/votes/_buttons", locals: { object: @question } %>
     </aside>
-    <p><%= @question.content %></p>
-    <span><%= @user.username %></span>
+    <%= erb :"/users/_content_and_username", locals: { object: @question } %>
   </section>
 
   <section class="comments">
@@ -14,36 +12,36 @@
     <ul>
       <% @q_comments.each do |comment| %>
         <li>
-          <aside>
-            <div class="comment_box"><%= comment.votes.count %> votes<div>
+          <aside class="votes">
+            <%= erb :"/votes/_buttons", locals: { object: comment } %>
           </aside>
-          <p><%= comment.content %></p>
-          <span><%= comment.creator.username %></span>
+          <div class="comment_box">
+            <%= erb :"/users/_content_and_username", locals: { object: comment } %>
+          </div>
         </li>
       <% end %>
     </ul>
   </section>
 
   <section class="answers">
-    <h3>Answers</h3>
+    <h2><%= @question.answers.count %> Answers</h2>
     <ul>
       <% @answers.each do |answer| %>
         <li>
-          <aside>
-            <div class="answer_box"><%= answer.votes.count %> votes<div>
+          <h4>Answer</h4>
+          <aside class="votes">
+            <%= erb :"/votes/_buttons", locals: { object: answer } %>
           </aside>
-          <p><%= answer.content %></p>
-          <span><%= answer.creator.username %></span>
+          <%= erb :"/users/_content_and_username", locals: { object: answer } %>
           <section class="comments">
             <h4>Answer Comments</h4>
             <ul>
               <% answer.responses.each do |comment| %>
                 <li>
-                  <aside>
-                    <div class="comment_box"><%= comment.votes.count %> votes<div>
+                  <aside class="votes">
+                    <%= erb :"/votes/_buttons", locals: { object: comment } %>
                   </aside>
-                  <p><%= comment.content %></p>
-                  <span><%= comment.creator.username %></span>
+                  <%= erb :"/users/_content_and_username", locals: { object: comment } %>
                 </li>
               <% end %>
             </ul>

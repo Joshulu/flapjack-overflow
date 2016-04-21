@@ -12,7 +12,6 @@ end
 
 get '/questions' do
   @questions = Question.all
-  @user = User.find(session[:user_id]) if session[:user_id]
   erb :"questions/index"
 end
 
@@ -22,6 +21,6 @@ post '/questions' do
     redirect '/questions'
   else
     @errors = question.errors.full_messages
-    erb :"/questions/index"
+    erb :"questions/index"
   end
 end
