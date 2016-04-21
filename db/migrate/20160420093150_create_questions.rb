@@ -1,9 +1,10 @@
 class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
-      t.references :creator
       t.string  :content
       t.string  :title
+      t.references :creator
+      t.references :best_answer
 
       t.timestamps
     end
