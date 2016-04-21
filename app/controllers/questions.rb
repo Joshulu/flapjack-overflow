@@ -1,12 +1,9 @@
-get '/' do
-  redirect '/questions'
-end
-
 get "/questions/:id" do
   @user = User.find(session[:user_id]) if session[:user_id]
 
   @question = Question.find(params[:id])
-  @creator = User.find(@question.creator_id)
+  @creator = User.find(@question.creator_id) # @question.creator
+  @best_answer = @question.best_answer
   @answers = @question.answers
   @q_comments = @question.responses
   erb :"questions/show"
@@ -26,6 +23,13 @@ post '/questions' do
     @errors = question.errors.full_messages
     erb :"/questions/index"
   end
+end
+
+post '/best_answer' do
+  question = Question.find(params[:question_id])
+  answer = Answer.find(params[:answer_id])
+  question.best_answer = answer
+  redirect "/questions/#{question.id}"
 end
 
 post '/answers' do
