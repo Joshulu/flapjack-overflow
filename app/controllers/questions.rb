@@ -12,11 +12,12 @@ end
 
 get '/questions' do
   @questions = Question.all
+  @user = User.find(session[:user_id])
   erb :"questions/index"
 end
 
 post '/questions' do
-  params[:question][:creator] = User.first ############# current logged in user
+  params[:question][:creator] = User.find(session[:user_id])
   question = Question.new(params[:question])
   if question.save
     redirect '/questions'
