@@ -1,37 +1,45 @@
-<h2>Questions</h2>
+<div class="index">
+  <h2>Questions</h2>
 
-<ul class="questions">
-<% @questions.each do |question| %>
-<li class="question">
-  <div id="main_box">
-    <div class="box"><%= question.votes.count %> votes</div>
-    <div class="box"><%= question.answers.count %> answers</div>
-  </div>
-  <h3><a href="/questions/<%= question.id %>"><%= question.title %></a></h3>
-  <div id=username>
-    ~ <%= question.creator.username %>
-  </div>
-</li>
-<% end %>
-</ul>
-
-<div class="create_question">
-  <% if @user %>
-  <h3>Create a Question</h3>
-
-  <% if @errors %>
-    <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
+  <ul class="questions">
+  <% @questions.each do |question| %>
+  <li class="question">
+    <table id="main_box">
+      <tr>
+        <td class="box">
+          <%= question.votes.count %>
+        </td>
+        <td class="box">
+          <%= question.answers.count %>
+        </td>
+      </tr><tr><td>votes</td><td>answers</td></tr>
+    </table>
+    <h3><a href="/questions/<%= question.id %>"><%= question.title %></a></h3>
+    <div id=username>
+      ~ <%= question.creator.username %>
+    </div>
+  </li>
   <% end %>
+  </ul>
 
-  <form action="/questions" method="post" id="question_form">
-    <input type='hidden' name="question[creator_id]" value="<%= @user.id %>">
-    <input type='text' name="question[title]" placeholder="Question title">
-    <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
-    <input type="submit">
-  </form>
+  <div class="create_question">
+    <% if @user %>
+    <h3>Create a Question</h3>
+
+    <% if @errors %>
+      <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <form action="/questions" method="post" id="question_form">
+      <input type='hidden' name="question[creator_id]" value="<%= @user.id %>">
+      <input type='text' name="question[title]" placeholder="Question title">
+      <textarea name="question[content]" form="question_form" placeholder="Question Content.."></textarea>
+      <input type="submit">
+    </form>
+  </div>
+  <% end %>
 </div>
-<% end %>
