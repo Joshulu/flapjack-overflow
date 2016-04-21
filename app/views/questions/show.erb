@@ -45,49 +45,49 @@
   </section>
 
   <% if @best_answer %>
-  <section class="best-answer">
-    <h3>BEST ANSWER</h3>
-    <aside>
-      <div class="answer_box"><%= @best_answer.votes.count %> votes<div>
-    </aside>
-    <p><%= @best_answer.content %></p>
-    <span><%= @best_answer.creator.username %></span>
-    <section class="comments">
-      <h4>Answer Comments</h4>
-      <ul>
-        <% @best_answer.responses.each do |comment| %>
-          <li>
-            <aside>
-              <div class="comment_box"><%= comment.votes.count %> votes<div>
-            </aside>
-            <p><%= comment.content %></p>
-            <span><%= comment.creator.username %></span>
-          </li>
-        <% end %>
-      </ul>
-
-    <% if @user %>
-      <h3>Respond to Answer</h3>
-
-      <!-- <% if @errors %>
+    <section class="best-answer">
+      <h3>BEST ANSWER</h3>
+      <aside>
+        <div class="answer_box"><%= @best_answer.votes.count %> votes<div>
+      </aside>
+      <p><%= @best_answer.content %></p>
+      <span><%= @best_answer.creator.username %></span>
+      <section class="comments">
+        <h4>Answer Comments</h4>
         <ul>
-        <% @errors.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-      <% end %> -->
+          <% @best_answer.responses.each do |comment| %>
+            <li>
+              <aside>
+                <div class="comment_box"><%= comment.votes.count %> votes<div>
+              </aside>
+              <p><%= comment.content %></p>
+              <span><%= comment.creator.username %></span>
+            </li>
+          <% end %>
+        </ul>
 
-      <form action="/responses" method="post">
-        <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
-        <input type='hidden' name="response[respondable_id]" value="<%= @best_answer.id %>">
-        <input type='hidden' name="response[respondable_type]" value="Answer">
-        <input type='text' name="response[content]" placeholder="Response content">
-        <input type="submit">
-      </form>
-    <% end %>
+      <% if @user %>
+        <h3>Respond to Answer</h3>
 
+        <!-- <% if @errors %>
+          <ul>
+          <% @errors.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+        <% end %> -->
+
+        <form action="/responses" method="post">
+          <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
+          <input type='hidden' name="response[respondable_id]" value="<%= @best_answer.id %>">
+          <input type='hidden' name="response[respondable_type]" value="Answer">
+          <input type='text' name="response[content]" placeholder="Response content">
+          <input type="submit">
+        </form>
+      <% end %>
+
+      </section>
     </section>
-  </section>
   <% end %>
 
   <section class="answers">
