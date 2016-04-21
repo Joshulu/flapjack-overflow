@@ -1,7 +1,30 @@
 <div class="vote-button">
-  <button type="button" name="upvote">Up</button>
+  <form name="upvote" action="/" method="post">
+    <button type="submit" name="vote" value="upvote">^</button>
+    <button type="submit" name="vote" value="downvote">v</button>
+  </form>
+</div>
+<div class="vote_number"><%= object.votes.count %></div>
+
+
+
+
+<!-- <button type="submit" name="downvote">v</button>
+
+
+
+  <form name="upvote" action="" method="post">
+    <input button type="submit" name="upvote">^</input>
+  </form>
+ -->
+
+
+<!-- <div class="vote-button">
+  <form name="upvote" action="" method="post">
+    <button type="submit" name="upvote">^</button>
+  </form>
 </div>
 <div><%= object.votes.count %> votes</div>
 <div class="vote-button">
-  <button type="button" name="downvote">Down</button>
-</div>
+  <button type="submit" name="downvote">v</button>
+</div> -->
