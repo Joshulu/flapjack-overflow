@@ -12,7 +12,7 @@ end
 # creates new user with post request
 post '/users' do
   new_user = User.create(username: params[:username], password: params[:password])
-  session[:id] = new_user.id
+  session[:user_id] = new_user.id
   redirect '/'
 end
 
@@ -20,7 +20,7 @@ end
 get '/login' do
   user = User.find_by(username: params[:username])
   if user.password == params[:password]
-    session[:id] = user.id
+    session[:user_id] = user.id
     erb :"users/login"
   end
   redirect '/'

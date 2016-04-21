@@ -3,19 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>FlapJack Overflow</title>
+    <link rel="icon" href="/imgs/flapjack_overflow.png">
+    <link rel"stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
   </head>
   <body>
+
     <div class="title_bar">
       <img src="/imgs/flapjack_overflow.png" alt="flapjack logo" style="width:80px;">
       <div id="nav_title">FlapJack Overflow</div>
       <nav>
         <ul>
           <li> <a href="/">Home</a> </li>
-          <%if session[:id]%>
+          <%if session[:user_id]%>
             <li id="break_bar_to_left"> <a href="/logout">Logout</a> </li>
           <%else%>
             <li id="break_bar_left_right"> <a href="/login">Login</a> </li>
-            <li> <a href="/user/new">Signup</a> </li>
+            <li> <a href="/users/new">Signup</a> </li>
           <%end%>
         </ul>
       </nav>
