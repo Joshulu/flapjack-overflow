@@ -1,12 +1,12 @@
 <h2><%= @question.title %></h2>
 <article class="question_page">
   <section class="question_post">
-    <aside>
+    <aside id="main_box">
       <div class="box"><%= @question.votes.count %> votes<div>
       <div class="box"><%= @question.answers.count %> answers<div>
     </aside>
     <p><%= @question.content %></p>
-    <span><%= @creator.username %></span>
+    <span>Posted by: <%= @creator.username %></span>
   </section>
 
   <section class="comments">
@@ -18,7 +18,7 @@
             <div class="comment_box"><%= comment.votes.count %> votes<div>
           </aside>
           <p><%= comment.content %></p>
-          <span><%= comment.creator.username %></span>
+          <span>User: <%= comment.creator.username %></span>
         </li>
       <% end %>
     </ul>
@@ -34,11 +34,12 @@
     </ul>
     <% end %> -->
 
-    <form action="/responses" method="post">
+    <form action="/responses" method="post" id="response">
       <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
       <input type='hidden' name="response[respondable_id]" value="<%= @question.id %>">
       <input type='hidden' name="response[respondable_type]" value="Question">
-      <input type='text' name="response[content]" placeholder="Response content">
+      <!-- <input type='text' name="response[content]" placeholder="Response content"> -->
+      <textarea name="response[content]" form="response" placeholder="Type Response Here..."></textarea>
       <input type="submit">
     </form>
     <% end %>
@@ -49,14 +50,17 @@
     <h3>Answers</h3>
     <ul>
       <% @answers.each do |answer| %>
+      <h4>Answer:<h4>
         <li>
           <aside>
-            <div class="answer_box"><%= answer.votes.count %> votes<div>
+            <div class="answer_box">
+              <%= answer.votes.count %> votes
+            <div>
           </aside>
           <p><%= answer.content %></p>
           <span><%= answer.creator.username %></span>
           <section class="comments">
-            <h4>Answer Comments</h4>
+            <h4>Comments:</h4>
             <ul>
               <% answer.responses.each do |comment| %>
                 <li>
@@ -70,7 +74,7 @@
             </ul>
 
           <% if @user %>
-          <h3>Respond to Answer</h3>
+          <!-- <h4>Respond to this Answer</h4> -->
 
           <!-- <% if @errors %>
             <ul>
@@ -80,11 +84,12 @@
           </ul>
           <% end %> -->
 
-          <form action="/responses" method="post">
+          <form action="/responses" method="post" id="responses">
             <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
             <input type='hidden' name="response[respondable_id]" value="<%= answer.id %>">
             <input type='hidden' name="response[respondable_type]" value="Answer">
-            <input type='text' name="response[content]" placeholder="Response content">
+            <!-- <input type='text' name="response[content]" placeholder="Response content"> -->
+            <textarea name="response[content]" form="responses" placeholder="Respond to This Anwser Here..."></textarea>
             <input type="submit">
           </form>
           <% end %>
@@ -106,10 +111,11 @@
     </ul>
     <% end %>
 
-    <form action="/answers" method="post">
+    <form action="/answers" method="post" id="answers">
       <input type='hidden' name="answer[creator_id]" value="<%= @user.id %>">
       <input type='hidden' name="answer[question_id]" value="<%= @question.id %>">
-      <input type='text' name="answer[content]" placeholder="Answer content">
+      <!-- <input type='text' name="answer[content]" placeholder="Answer content"> -->
+      <textarea name="answer[content]" form="answers" placeholder="Your Answer Here!" ></textarea>
       <input type="submit">
     </form>
     <% end %>
