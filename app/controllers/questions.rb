@@ -18,8 +18,8 @@ post '/questions' do
     redirect '/questions'
   else
     @errors = question.errors.full_messages
-    erb :"questions/index"
   end
+  erb :"questions/index"
 end
 
 post '/best_answer' do
