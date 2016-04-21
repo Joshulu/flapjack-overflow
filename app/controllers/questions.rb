@@ -1,6 +1,4 @@
 get "/questions/:id" do
-  @user = User.find(session[:user_id]) if session[:user_id]
-
   @question = Question.find(params[:id])
   @creator = @question.creator
   @best_answer = @question.best_answer
@@ -11,7 +9,6 @@ end
 
 get '/questions' do
   @questions = Question.all
-  @user = User.find(session[:user_id]) if session[:user_id]
   erb :"questions/index"
 end
 
@@ -21,7 +18,7 @@ post '/questions' do
     redirect '/questions'
   else
     @errors = question.errors.full_messages
-    erb :"/questions/index"
+    erb :"questions/index"
   end
 end
 
