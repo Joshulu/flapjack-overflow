@@ -1,12 +1,10 @@
 <h2><%= @question.title %></h2>
 <article class="question_page">
   <section class="question_post">
-    <aside id="main_box">
-      <div class="box"><%= @question.votes.count %> votes<div>
-      <div class="box"><%= @question.answers.count %> answers<div>
+    <aside class="votes">
+      <%= erb :"/votes/_buttons", locals: { object: @question } %>
     </aside>
-    <p><%= @question.content %></p>
-    <span>Posted by: <%= @creator.username %></span>
+    <%= erb :"/users/_content_and_username", locals: { object: @question } %>
   </section>
 
   <section class="comments">
@@ -14,38 +12,37 @@
     <ul>
       <% @q_comments.each do |comment| %>
         <li>
-          <aside>
-            <div class="comment_box"><%= comment.votes.count %> votes<div>
+          <aside class="votes">
+            <%= erb :"/votes/_buttons", locals: { object: comment } %>
           </aside>
-          <p><%= comment.content %></p>
-          <span>User: <%= comment.creator.username %></span>
+          <div class="comment_box">
+            <%= erb :"/users/_content_and_username", locals: { object: comment } %>
+          </div>
         </li>
       <% end %>
     </ul>
 
-    <% if @user %>
-    <h3>Respond to Question</h3>
+    <% if current_user %>
+      <h3>Respond to Question</h3>
 
-    <!-- <% if @errors %>
-      <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-    <% end %> -->
+      <!-- <% if @errors %>
+        <ul>
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+      <% end %> -->
 
-    <form action="/responses" method="post" id="response">
-      <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
-      <input type='hidden' name="response[respondable_id]" value="<%= @question.id %>">
-      <input type='hidden' name="response[respondable_type]" value="Question">
-      <!-- <input type='text' name="response[content]" placeholder="Response content"> -->
-      <textarea name="response[content]" form="response" placeholder="Type Response Here..."></textarea>
-      <input type="submit">
-    </form>
+      <form action="/responses" method="post" id="response">
+        <input type='hidden' name="response[creator_id]" value="<%= current_user.id %>">
+        <input type='hidden' name="response[respondable_id]" value="<%= @question.id %>">
+        <input type='hidden' name="response[respondable_type]" value="Question">
+        <textarea name="response[content]" form="response" placeholder="Type Response Here..."></textarea>
+        <input type="submit">
+      </form>
     <% end %>
 
   </section>
-
 
   <% if @best_answer %>
   <section class="best-answer">
@@ -70,23 +67,23 @@
       </ul>
 
     <% if @user %>
-    <h3>Respond to Answer</h3>
+      <h3>Respond to Answer</h3>
 
-    <!-- <% if @errors %>
-      <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-    <% end %> -->
+      <!-- <% if @errors %>
+        <ul>
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+      <% end %> -->
 
-    <form action="/responses" method="post">
-      <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
-      <input type='hidden' name="response[respondable_id]" value="<%= @best_answer.id %>">
-      <input type='hidden' name="response[respondable_type]" value="Answer">
-      <input type='text' name="response[content]" placeholder="Response content">
-      <input type="submit">
-    </form>
+      <form action="/responses" method="post">
+        <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
+        <input type='hidden' name="response[respondable_id]" value="<%= @best_answer.id %>">
+        <input type='hidden' name="response[respondable_type]" value="Answer">
+        <input type='text' name="response[content]" placeholder="Response content">
+        <input type="submit">
+      </form>
     <% end %>
 
     </section>
@@ -94,87 +91,82 @@
   <% end %>
 
   <section class="answers">
-    <h3>Answers</h3>
+    <h2><%= @question.answers.count %> Answers</h2>
     <ul>
       <% @answers.each do |answer| %>
       <% next if answer == @best_answer %>
       <h4>Answer:<h4>
         <li>
-          <aside>
-            <div class="answer_box">
-              <%= answer.votes.count %> votes
-            <div>
+
+          <h4>Answer</h4>
+          <aside class="votes">
+            <%= erb :"/votes/_buttons", locals: { object: answer } %>
           </aside>
 
-          <% if @user && @creator.id == @user.id %>
-          <form action="/best_answer" method="post">
-            <input type='hidden' name="question_id" value="<%= @question.id %>">
-            <input type='hidden' name="answer_id" value="<%= answer.id %>">
-            <input type="submit" value="BEST ANSWER">
-          </form>
+          <% if current_user && @creator.id == current_user.id %>
+            <form action="/best_answer" method="post">
+              <input type='hidden' name="question_id" value="<%= @question.id %>">
+              <input type='hidden' name="answer_id" value="<%= answer.id %>">
+              <input type="submit" value="BEST ANSWER">
+            </form>
           <% end %>
 
-          <p><%= answer.content %></p>
-          <span><%= answer.creator.username %></span>
+          <%= erb :"/users/_content_and_username", locals: { object: answer } %>
+
           <section class="comments">
             <h4>Comments:</h4>
             <ul>
               <% answer.responses.each do |comment| %>
                 <li>
-                  <aside>
-                    <div class="comment_box"><%= comment.votes.count %> votes<div>
+                  <aside class="votes">
+                    <%= erb :"/votes/_buttons", locals: { object: comment } %>
                   </aside>
-                  <p><%= comment.content %></p>
-                  <span><%= comment.creator.username %></span>
+                  <%= erb :"/users/_content_and_username", locals: { object: comment } %>
                 </li>
               <% end %>
             </ul>
 
-          <% if @user %>
-          <!-- <h4>Respond to this Answer</h4> -->
+            <% if current_user %>
+              <h3>Respond to Answer</h3>
 
-          <!-- <% if @errors %>
-            <ul>
-            <% @errors.each do |error| %>
-              <li><%= error %></li>
+              <!-- <% if @errors %>
+                <ul>
+                <% @errors.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+              <% end %> -->
+
+              <form action="/responses" method="post" id="responses">
+                <input type='hidden' name="response[creator_id]" value="<%= current_user.id %>">
+                <input type='hidden' name="response[respondable_id]" value="<%= answer.id %>">
+                <input type='hidden' name="response[respondable_type]" value="Answer">
+                <textarea name="response[content]" form="responses" placeholder="Respond to This Anwser Here..."></textarea>
+                <input type="submit">
+              </form>
             <% end %>
-          </ul>
-          <% end %> -->
-
-          <form action="/responses" method="post" id="responses">
-            <input type='hidden' name="response[creator_id]" value="<%= @user.id %>">
-            <input type='hidden' name="response[respondable_id]" value="<%= answer.id %>">
-            <input type='hidden' name="response[respondable_type]" value="Answer">
-            <!-- <input type='text' name="response[content]" placeholder="Response content"> -->
-            <textarea name="response[content]" form="responses" placeholder="Respond to This Anwser Here..."></textarea>
-            <input type="submit">
-          </form>
-          <% end %>
-
-        </section>
-
+          </section>
         </li>
       <% end %>
     </ul>
 
-    <% if @user %>
-    <h3>Answer this Question</h3>
+    <% if current_user %>
+      <h3>Answer this Question</h3>
 
-    <% if @errors %>
-      <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
+      <% if @errors %>
+        <ul>
+          <% @errors.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-    <% end %>
 
-    <form action="/answers" method="post" id="answers">
-      <input type='hidden' name="answer[creator_id]" value="<%= @user.id %>">
-      <input type='hidden' name="answer[question_id]" value="<%= @question.id %>">
-      <!-- <input type='text' name="answer[content]" placeholder="Answer content"> -->
-      <textarea name="answer[content]" form="answers" placeholder="Your Answer Here!" ></textarea>
-      <input type="submit">
-    </form>
+      <form action="/answers" method="post" id="answers">
+        <input type='hidden' name="answer[creator_id]" value="<%= current_user.id %>">
+        <input type='hidden' name="answer[question_id]" value="<%= @question.id %>">
+        <textarea name="answer[content]" form="answers" placeholder="Your Answer Here!" ></textarea>
+        <input type="submit">
+      </form>
     <% end %>
 
   </section>
