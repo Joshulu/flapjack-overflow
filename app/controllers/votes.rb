@@ -16,17 +16,33 @@ end
 
 post '/votes' do
   object_type = params['object_type']
-  object_id = params['object_id']
+  object_id = params['object_id'].to_i
   vote_type = params['vote_type']
+
+  puts
+  puts
+  puts object_id
+  puts object_type
+  puts vote_type
+  puts
 
   case object_type
   when "Question"
-    question = Question.find(object_id)
+    object = Question.find(object_id)
   when "Answer"
-    answer = Answer.find(object_id)
+    object = Answer.find(object_id)
   when "Response"
-    response = Response.find(object_id)
+    object = Response.find(object_id)
   end
 
-  Vote.save(voter: current_user,  vote_type: params['vote_type'], votable_type: object_type)
+  Vote.create(voter: current_user,  vote_type: vote_type, votable_type: object_type, votable: object)
+
+
+
+  if request.xhr?
+    content_type :json
+    { :object_type => object_type, :vote_type => vote_type, :count => object.votes.count.to_s }.to_json
+  else
+    redirect "/questions/#{object_id}"
+  end
 end
