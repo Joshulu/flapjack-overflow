@@ -5,7 +5,7 @@
     <input type="hidden" name="object_id" value=<%= object.id %> >
     <input type="hidden" name="vote_count" value=<%= object.votes.count %> >
     <input type="hidden" name="vote_type" value="up">
-    <input type="submit" value="^">
+    <input type="submit" value="&#x21E7;">
   </form>
 
   <div class="vote_number"><%= object.votes.count %></div>
@@ -15,7 +15,7 @@
     <input type="hidden" name="object_id" value=<%= object.id %> >
     <input type="hidden" name="vote_count" value=<%= object.votes.count %> >
     <input type="hidden" name="vote_type" value="down">
-    <input type="submit" value="v">
+    <input type="submit" value="&#8681;">
   </form>
 
 </div>

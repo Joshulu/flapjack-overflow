@@ -77,11 +77,11 @@ nav li{
   width: 205px;
   border: none;
   background-color: white;
-  /*background-color: red;*/
+
 }
 
-/* ---- Home Page ---- */
-h2{
+/* ---- Home PAGE---- */
+.index h2{
   padding-bottom: 40px;
   margin: auto;
   width: 50%;
@@ -90,43 +90,47 @@ h2{
   color: rgb(79,77,72);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
-
-.questions {
+.index .questions {
   margin-top: 30px;
 }
-#main_box{
+.index #main_box{
   display: inline-block;
+  text-align: center;
+  /*border: 1px solid black;*/
 }
-.box{
+.index #main_box td{
   padding: 5px;
 }
-.question h3{
+.index .question h3{
   display: inline-block;
   margin-left: 1%;
+  width:80%;
 }
-
- .questions li {
-  border: 1px solid rgba(0,0,0,.1);
+.index .questions{
+  margin: auto;
+  width: 80%;
+}
+.index .questions li {
+  border: 1px solid rgba(0,0,0, .4);
   list-style-type: none;
   list-style: none;
+  margin: 10px;
 }
-.question a{
+.index .question a{
   color: #B83926;
   text-decoration: none;
 }
-
-.question a:hover{
+.index .question a:hover{
   color: rgb(79,77,72);
 }
-
-#username{
+.index #username{
   display: inline-block;
 }
 
-.create_question{
+.index .create_question{
   padding: 100px;
 }
-.create_question h3{
+.index .create_question h3{
   margin: auto;
   margin-top: -80px;
   width: 50%;
@@ -135,7 +139,6 @@ h2{
   color: rgb(79,77,72);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
-
 .create_question form{
   margin: auto;
   text-align: center;
@@ -159,52 +162,47 @@ h2{
   width: 500px;
 }
 
+      /*------ SHOW ERB --------*/
 
-/* ---- QUESTION SHOW PAGE ---*/
-
-.question_post #main_box{
+.show #title{
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(79,77,72);
+}
+.show .votes{
   display: inline-block;
-  /*background-color: red;*/
+  text-align: center;
 }
-.box{
-  padding: 5px;
-}
-
-.question_post {
+.show .question_post {
+  margin: auto;
   list-style-type: none;
   list-style: none;
+  min-height: 100px;
   width: 75%;
-  margin: auto;
   padding-bottom: 25px;
-  border-bottom: 1px solid rgba(0,0,0,.4) ;
-
 }
-.question_post p{
+.show .question_post p {
+  width: 80%;
   margin: auto;
-  display: inline-block;
-  margin-left: 10%;
-  width: 70%;
+  padding-top: 20px;
 }
-
-.question_post span{
-  bottom: 0;
-  display: block;
-  float: right;
-  /*margin-left: 80%;*/
+.show .user_info{
+  width: 90%;
+  text-align: right;
+  margin: auto;
+  font-weight: lighter;
 }
-.question_page{
-  margin-top: 30px;
-}
-
 
 /*--- COMMENTS ON QUESTION ---*/
-
 .comments {
   margin-top: 30px;
   font-size: .8em;
-  font-weight: lighter;
 }
-.comments h4,h3{
+.show .comments h4{
   margin-top: 4%;
   margin-left: auto;
   margin-right: auto;
@@ -214,14 +212,15 @@ h2{
   color: rgb(79,77,72);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
-.comments aside{
-  display:inline-block;
-}
-.comment_box{
+.show .comment_box{
   padding: 5px;
 }
- .comments li {
-  border-bottom: 1px solid rgba(0,0,0,.1);
+.show .comments ul{
+  width: 80%;
+  margin: auto;
+}
+ .show .comments li {
+  border: 1px solid rgba(0,0,0,.1);
   list-style-type: none;
   list-style: none;
   min-height: 70px;
@@ -235,23 +234,29 @@ h2{
 }
 
 /*--comments form--*/
-
-.comments textarea[name="response[content]"]{
+.show .comments h3{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.comments form[id='responses'] textarea[name="response[content]"]{
   margin-top: 10px;
   min-height: 60px;
   min-width: 500px;
   max-width: 500px;
 }
-
-.comments input[type="submit"]{
+.comments form[id='responses'] input[type="submit"]{
   width: 505px;
   height: 30px;
   border: none;
   background-color: white;
   /*margin-top: 20px;*/
 }
-
-.comments form{
+.comments form[id='responses']{
   font-size: 1em;
   margin: auto;
   text-align: center;
@@ -261,26 +266,28 @@ h2{
 
 /*--- ANSWERS ---*/
 
-.answers {
+.show .answers {
   margin-top: 10px;
 }
-.answers p, span, .answer_box{
-  font-weight: lighter;
-}
-.answers aside{
-  display:inline-block;
-}
-.answer_box{
-  padding: 5px;
+.show .answers h2{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin: auto;
+  width: 50%;
+  font-size: 1.3em;
+  text-align: center;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
  .answers li {
-  border-bottom: 1px solid rgba(0,0,0,.1);
   list-style-type: none;
   list-style: none;
   min-height: 70px;
-}
+  width: 80%;
+  margin: auto;
+  }
 .answers p{
-  padding-top: 1%;
+  padding-top: 2%;
   margin: auto;
   display: inline-block;
   margin-left: 10%;
@@ -296,14 +303,14 @@ h2{
   color: rgb(79,77,72);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
-.answers textarea[name="answer[content]"]{
+.answers form[id="answers"] textarea[name="answer[content]"]{
   margin-top: 10px;
   min-height: 200px;
   min-width: 500px;
   max-width: 500px;
 }
 
-.answers input[type="submit"]{
+.answers form[id="answers"] input[type="submit"]{
   width: 505px;
   height: 30px;
   border: none;
@@ -312,6 +319,103 @@ h2{
 }
 
 .answers form[id="answers"]{
+  font-size: 1em;
+  margin: auto;
+  text-align: center;
+  width:500px;
+  margin-bottom: 10%;
+}
+
+/*--- VOTE BUTTONS ----*/
+.votes {
+  float: left;
+  display: inline-block;
+}
+.vote_box form input[type='submit']{
+  width: 35px;
+  font-size: 1.5em;
+  text-align: center;
+}
+.vote_box .vote_number{
+  width: 35px;
+  text-align: center;
+  font-size: 2em;
+}
+.answers form[id='responses'] textarea[name='response[content]']{
+  margin-top: 10px;
+  min-height: 25px;
+  min-width: 500px;
+  max-width: 500px;
+}
+.answers form[id="responses"] input[type="submit"]{
+  width: 505px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  /*margin-top: 20px;*/
+}
+.answers form[id="responses"]{
+  font-size: 1em;
+  margin: auto;
+  text-align: center;
+  width:500px;
+  margin-bottom: 10%;
+}
+
+
+/*--- BEST ANSWER ----*/
+.show .best-answer {
+  margin-top: 10px;
+}
+.show .best-answer h4{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin: auto;
+  width: 50%;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.show .best-answer li {
+  list-style-type: none;
+  list-style: none;
+  min-height: 70px;
+  width: 80%;
+  margin: auto;
+  }
+.show .best-answer p{
+  margin: auto;
+  padding-top: 2%;
+  display: inline-block;
+  width: 70%;
+}
+.best-answer h4{
+  margin-top: 20px;
+  font-size: 1.1em;
+  margin-left: 0;
+  margin-right: 0;
+  width: 97%;
+  text-align: left;
+  color: rgb(79,77,72);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.best-answer form[id="answers"] textarea[name="answer[content]"]{
+  margin-top: 10px;
+  min-height: 200px;
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.best-answer form[id="answers"] input[type="submit"]{
+  width: 505px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  /*margin-top: 20px;*/
+}
+
+.best-answer form[id="answers"]{
   font-size: 1em;
   margin: auto;
   text-align: center;
