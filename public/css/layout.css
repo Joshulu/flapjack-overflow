@@ -111,6 +111,7 @@ nav li{
   width: 80%;
 }
 .index .questions li {
+  clear:both;
   border: 1px solid rgba(0,0,0, .4);
   list-style-type: none;
   list-style: none;
@@ -124,7 +125,12 @@ nav li{
   color: rgb(79,77,72);
 }
 .index #username{
+  float: right;
+  position: relative;
+  bottom: 30px;
+  right: 30px;
   display: inline-block;
+
 }
 
 .index .create_question{
