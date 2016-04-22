@@ -243,20 +243,20 @@ nav li{
   color: rgb(79,77,72);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
-.comments form[id='response'] textarea[name="response[content]"]{
+.comments form[id='responses'] textarea[name="response[content]"]{
   margin-top: 10px;
   min-height: 60px;
   min-width: 500px;
   max-width: 500px;
 }
-.comments form[id='response'] input[type="submit"]{
+.comments form[id='responses'] input[type="submit"]{
   width: 505px;
   height: 30px;
   border: none;
   background-color: white;
   /*margin-top: 20px;*/
 }
-.comments form[id='response']{
+.comments form[id='responses']{
   font-size: 1em;
   margin: auto;
   text-align: center;
