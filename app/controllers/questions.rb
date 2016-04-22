@@ -1,10 +1,14 @@
 get "/questions/:id" do
-  @question = Question.find(params[:id])
-  @creator = @question.creator
-  @best_answer = @question.best_answer
-  @answers = @question.answers
-  @q_comments = @question.responses
-  erb :"questions/show"
+  if Question.exists?(params[:id])
+    @question = Question.find(params[:id])
+    @creator = @question.creator
+    @best_answer = @question.best_answer
+    @answers = @question.answers
+    @q_comments = @question.responses
+    erb :"questions/show"
+  else
+    redirect '/error'
+  end
 end
 
 get '/questions' do
@@ -58,4 +62,10 @@ post '/responses' do
     # @errors = response.errors.full_messages # no error display on responses yet
     erb :"/questions/#{question_id}"
   end
+end
+
+
+
+get '/error' do
+  erb :'404', layout: false
 end
